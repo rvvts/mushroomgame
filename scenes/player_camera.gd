@@ -1,3 +1,12 @@
+#===============================================================================
+# Unhide DebugMaxDistance to see the sphere that is used for this.
+# Basically:
+# - targetpos is the center of the sphere. it only moves enough to keep the
+#   player inside. it moves at a certain speed
+# - offsetpos is targetpos + an offset (probably set via camera zones)
+# - the camera moves towards offsetpos at a certain speed, and always looks
+#   toward targetpos
+#===============================================================================
 extends Camera3D
 
 @export var target: Node3D = null

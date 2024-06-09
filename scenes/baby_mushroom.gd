@@ -1,3 +1,12 @@
+#===============================================================================
+# This is a baby mushroom.
+# It doesn't move until the player gets close enough, then it'll follow them.
+# It collides with other baby mushrooms, and with the player. But the player
+# doesn't collide with baby mushrooms, so it will just push them out of the
+# way:
+# collision layer: 10 (child)
+# collision mask: 1 (terrain) | 9 (parent) | 10 (child)
+#===============================================================================
 extends CharacterBody3D
 
 var parent_mushroom: Node3D = null # set to player once they enter range
@@ -35,6 +44,7 @@ func do_movement(delta: float):
 	if not is_on_floor():
 		velocity.y -= 100 * delta
 	
+	# constantly jump (cute)
 	if is_on_floor():
 		velocity.y = jump_speed
 	

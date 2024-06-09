@@ -1,3 +1,16 @@
+#===============================================================================
+# This is the player.
+# It ignores collisions with baby mushrooms (though they do not ignore
+# collisions with the player), so you can push baby mushrooms out of the way.
+# collision layer: 9 (parent)
+# collision mask: 1 (terrain)
+#
+# CameraZoneDetector detects which camera zone we're in. Its settings are:
+# monitoring = true
+# monitorable = false
+# collision layer = none
+# collision mask = 32 (camera_zone)
+#===============================================================================
 extends CharacterBody3D
 
 var speed := 10.0
