@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://8mieo3lk4xkx"]
+
+[ext_resource type="Script" path="res://scenes/characters/mommy_mushroom.gd" id="1_q4qni"]
+[ext_resource type="Texture2D" uid="uid://dl2323ec6u7p5" path="res://krita/mommymushroom.png" id="2_f8n8p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x1npn"]
+radius = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsf2m"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idcsj"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrwdu"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6e54"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pddte"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2ftn"]
+atlas = ExtResource("2_f8n8p")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vk1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsf2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idcsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrwdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6e54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pddte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2ftn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ibb4"]
+radius = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2kkgg"]
+
+[node name="MommyMushroom" type="CharacterBody3D"]
+collision_layer = 256
+script = ExtResource("1_q4qni")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_x1npn")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_4vk1n")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ChildDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChildDetector"]
+shape = SubResource("SphereShape3D_7ibb4")
+
+[node name="CameraZoneDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2147483648
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZoneDetector"]
+shape = SubResource("SphereShape3D_2kkgg")
+
+[connection signal="body_entered" from="ChildDetector" to="." method="_on_child_detector_body_entered"]

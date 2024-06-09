@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://b08x1mfiagp7i"]
+
+[ext_resource type="Texture2D" uid="uid://c4d74txufwlpo" path="res://krita/babymushroom1.png" id="1_gotuh"]
+[ext_resource type="Script" path="res://scenes/baby_mushroom.gd" id="1_uw1e1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u8tqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrn3o"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3twe"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cte4y"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dwrt"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtyka"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkrhm"]
+atlas = ExtResource("1_gotuh")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulgfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrn3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3twe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cte4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dwrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtyka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkrhm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="BabyMushroom" type="CharacterBody3D"]
+collision_layer = 512
+collision_mask = 769
+script = ExtResource("1_uw1e1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_u8tqf")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+offset = Vector2(0, 74.845)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ulgfd")
+animation = &"idle"
+autoplay = "idle"

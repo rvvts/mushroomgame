@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkmu8pko6vnxc"]
+
+[ext_resource type="Script" path="res://scenes/player_camera.gd" id="1_j1j2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2i7r"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.12549)
+
+[node name="PlayerCamera" type="Camera3D"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
+current = true
+script = ExtResource("1_j1j2b")
+
+[node name="DebugMaxDistance" type="CSGSphere3D" parent="."]
+visible = false
+material = SubResource("StandardMaterial3D_c2i7r")
