@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7dhxcviw0hh5"]
+[gd_scene load_steps=25 format=3 uid="uid://b7dhxcviw0hh5"]
 
 [ext_resource type="PackedScene" uid="uid://c04mps4vtadtj" path="res://scenes/camera_zone.tscn" id="1_5e5kj"]
 [ext_resource type="PackedScene" uid="uid://8mieo3lk4xkx" path="res://scenes/characters/mommy_mushroom.tscn" id="1_vd3tm"]
@@ -7,6 +7,13 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm1rx"]
 albedo_color = Color(0.368627, 0.964706, 0.545098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ir3i"]
+albedo_color = Color(0, 0.862745, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou1cd"]
+transparency = 1
+albedo_color = Color(0, 0.298039, 1, 0.737255)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8x8eq"]
 albedo_color = Color(1, 0.498039, 0.388235, 1)
@@ -39,7 +46,7 @@ albedo_color = Color(0.988235, 1, 0.756863, 1)
 albedo_color = Color(1, 0.54902, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3t60"]
-size = Vector3(124.986, 13.8175, 76.9985)
+size = Vector3(124.986, 24.6675, 51.1576)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6j4c2"]
 size = Vector3(82.5863, 20, 13.2483)
@@ -73,6 +80,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6635, -10.943, 28.0961)
 use_collision = true
 size = Vector3(125.327, 21.986, 82.1786)
 material = SubResource("StandardMaterial3D_lm1rx")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="PlaceholderLevel/Terrain/Ground"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 25, 16)
+operation = 2
+radius = 20.0
+height = 200.0
+sides = 16
+material = SubResource("StandardMaterial3D_5ir3i")
+
+[node name="Water" type="CSGBox3D" parent="PlaceholderLevel/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5173, -11.467, 44.1482)
+size = Vector3(126.79, 22.3125, 27.9401)
+material = SubResource("StandardMaterial3D_ou1cd")
 
 [node name="Arch" type="CSGTorus3D" parent="PlaceholderLevel/Terrain"]
 transform = Transform3D(-2.18557e-08, 0.5, -0.866025, -1, -4.37114e-08, 0, -3.78552e-08, 0.866025, 0.5, 0, 0.2, 0)
@@ -165,9 +185,10 @@ material = SubResource("StandardMaterial3D_r7sbo")
 
 [node name="CameraZone" parent="PlaceholderLevel/CameraZones" instance=ExtResource("1_5e5kj")]
 transform = Transform3D(0.998896, 0, 0.0469844, 0, 1, 0, -0.0469844, 0, 0.998896, 0, 10, 3.75418)
+secondary_offset = Vector3(-10, 5, 5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlaceholderLevel/CameraZones/CameraZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.493, -3.09125, 28.4993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.493, -8.51627, 15.5788)
 shape = SubResource("BoxShape3D_r3t60")
 
 [node name="CameraZone2" parent="PlaceholderLevel/CameraZones" instance=ExtResource("1_5e5kj")]
@@ -200,6 +221,7 @@ shape = SubResource("BoxShape3D_tldn8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.8321, 19.188, 54.1228)
 billboard = 1
 text = "press tab to cycle camera angles"
+font_size = 128
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="PlaceholderLevel"]
 environment = SubResource("Environment_ay267")
@@ -214,10 +236,10 @@ target = NodePath("../MommyMushroom")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6703, 1.65476, 0)
 
 [node name="BabyMushroom" parent="PlaceholderLevel" instance=ExtResource("3_0nxqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6882, 0.715831, 4.53115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96213, 9.68272, 0.309339)
 
 [node name="BabyMushroom2" parent="PlaceholderLevel" instance=ExtResource("3_0nxqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1975, 3.56906, 4.53115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.0384, 17.6199, 53.8235)
 
 [node name="BabyMushroom3" parent="PlaceholderLevel" instance=ExtResource("3_0nxqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.407, 0.814584, 4.53115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.145, 4.24048, 0.301399)
