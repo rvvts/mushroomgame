@@ -11,14 +11,16 @@ extends CharacterBody3D
 
 var parent_mushroom: Node3D = null # set to player once they enter range
 
-var speed := 6.0
+var speed := 8.0
 var acceleration := 500.0
 var deceleration := 500.0
 var jump_speed := 10.0
 var gravity := 100.0
 
+var should_wait := false
+
 func _ready():
-	add_to_group("child")
+	add_to_group("children")
 
 func do_movement(delta: float):
 	if not is_instance_valid(parent_mushroom): return
@@ -26,6 +28,9 @@ func do_movement(delta: float):
 	var movement := parent_mushroom.global_position - global_position
 	movement.y = 0
 	movement = movement.normalized()
+	
+	if should_wait:
+		movement = Vector3.ZERO
 	
 	if movement.length_squared() < 0.1:
 		var newspeed := velocity.length() - deceleration * delta
@@ -74,4 +79,3 @@ func _physics_process(delta):
 		if global_position.distance_to(parent_mushroom.global_position) > 100:
 			global_position = parent_mushroom.global_position + Vector3.UP * 5
 			velocity = Vector3.ZERO
-	

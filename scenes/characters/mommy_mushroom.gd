@@ -98,7 +98,16 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("cycle_camera"):
 		is_secondary_angle = not is_secondary_angle
+	
+	if Input.is_action_just_pressed("command_children_wait"):
+		for c in $CommandZone.get_overlapping_bodies():
+			if c.is_in_group("children"):
+				c.should_wait = true
+	if Input.is_action_just_pressed("command_children_come"):
+		for c in $CommandZone.get_overlapping_bodies():
+			if c.is_in_group("children"):
+				c.should_wait = false
 
 func _on_child_detector_body_entered(body):
-	if body.is_in_group("child"):
+	if body.is_in_group("children"):
 		body.parent_mushroom = self

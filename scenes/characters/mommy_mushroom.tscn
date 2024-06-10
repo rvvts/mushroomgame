@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://8mieo3lk4xkx"]
+[gd_scene load_steps=14 format=3 uid="uid://8mieo3lk4xkx"]
 
 [ext_resource type="Script" path="res://scenes/characters/mommy_mushroom.gd" id="1_q4qni"]
 [ext_resource type="Texture2D" uid="uid://dl2323ec6u7p5" path="res://krita/mommymushroom.png" id="2_f8n8p"]
@@ -61,6 +61,9 @@ radius = 3.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2kkgg"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_yhn4y"]
+radius = 5.0
+
 [node name="MommyMushroom" type="CharacterBody3D"]
 collision_layer = 256
 script = ExtResource("1_q4qni")
@@ -90,5 +93,13 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZoneDetector"]
 shape = SubResource("SphereShape3D_2kkgg")
+
+[node name="CommandZone" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CommandZone"]
+shape = SubResource("SphereShape3D_yhn4y")
 
 [connection signal="body_entered" from="ChildDetector" to="." method="_on_child_detector_body_entered"]

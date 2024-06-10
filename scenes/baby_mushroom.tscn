@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b08x1mfiagp7i"]
+[gd_scene load_steps=15 format=3 uid="uid://b08x1mfiagp7i"]
 
 [ext_resource type="Texture2D" uid="uid://c4d74txufwlpo" path="res://krita/babymushroom1.png" id="1_gotuh"]
 [ext_resource type="Script" path="res://scenes/baby_mushroom.gd" id="1_uw1e1"]
+[ext_resource type="Texture2D" uid="uid://crupsqkdkhu3r" path="res://krita/sadbubble.png" id="3_ui3qq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8tqf"]
 
@@ -55,6 +56,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsdli"]
+atlas = ExtResource("3_ui3qq")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iakyv"]
+atlas = ExtResource("3_ui3qq")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ret6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsdli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iakyv")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 3.0
+}]
+
 [node name="BabyMushroom" type="CharacterBody3D"]
 collision_layer = 512
 collision_mask = 769
@@ -70,3 +93,16 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ulgfd")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="SadBubble" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799657, 0)
+visible = false
+offset = Vector2(0, 128)
+pixel_size = 0.0005
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ret6o")
+animation = &"sad"
+autoplay = "sad"
