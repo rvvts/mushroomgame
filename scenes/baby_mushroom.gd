@@ -76,6 +76,7 @@ func _physics_process(delta):
 	
 	# teleport to parent if too far
 	if is_instance_valid(parent_mushroom):
-		if global_position.distance_to(parent_mushroom.global_position) > 100:
-			global_position = parent_mushroom.global_position + Vector3.UP * 5
-			velocity = Vector3.ZERO
+		if not should_wait:
+			if global_position.distance_to(parent_mushroom.global_position) > 100:
+				global_position = parent_mushroom.global_position + Vector3.UP * 5
+				velocity = Vector3.ZERO
