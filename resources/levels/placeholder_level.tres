@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=2 format=3 uid="uid://3xpgv8s41pt6"]
+
+[ext_resource type="Script" path="res://components/level_resource.gd" id="1_67xoa"]
+
+[resource]
+script = ExtResource("1_67xoa")
