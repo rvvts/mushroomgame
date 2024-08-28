@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckj268gq5f5k"]
+
+[ext_resource type="Script" path="res://scenes/goal_zone.gd" id="1_4vkry"]
+
+[node name="GoalZone" type="Area3D"]
+collision_layer = 0
+collision_mask = 768
+monitorable = false
+script = ExtResource("1_4vkry")
