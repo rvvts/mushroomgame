@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://co7ao46o3myvo"]
+
+[ext_resource type="PackedScene" uid="uid://ca7k7bnoi28aj" path="res://scenes/util/level_transition.tscn" id="1_cpxqw"]
+[ext_resource type="Resource" uid="uid://3xpgv8s41pt6" path="res://resources/levels/placeholder_level.tres" id="2_bddq5"]
+[ext_resource type="PackedScene" uid="uid://8mieo3lk4xkx" path="res://scenes/characters/mommy_mushroom.tscn" id="3_wtu4k"]
+[ext_resource type="PackedScene" uid="uid://bkmu8pko6vnxc" path="res://scenes/player_camera.tscn" id="4_ejxx0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayj7t"]
+
+[node name="EmptyLevel" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(69, 1, 42.6077)
+
+[node name="TransTest" parent="." instance=ExtResource("1_cpxqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+level_resource = ExtResource("2_bddq5")
+
+[node name="CollisionShape3D" parent="TransTest" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ayj7t")
+
+[node name="Spawn" parent="TransTest" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 2, 0)
+
+[node name="MommyMushroom" parent="." instance=ExtResource("3_wtu4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ejxx0")]
+target = NodePath("../MommyMushroom")
+
+[editable path="TransTest"]

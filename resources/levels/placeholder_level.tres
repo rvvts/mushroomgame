@@ -4,3 +4,6 @@
 
 [resource]
 script = ExtResource("1_67xoa")
+scene_path = "res://scenes/placeholder_level.tscn"
+name = ""
+description = ""

@@ -1,12 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://2flvnykf3dus"]
+[gd_scene load_steps=30 format=3 uid="uid://2flvnykf3dus"]
 
 [ext_resource type="PackedScene" uid="uid://c04mps4vtadtj" path="res://scenes/camera_zone.tscn" id="1_hb5eo"]
+[ext_resource type="PackedScene" uid="uid://ca7k7bnoi28aj" path="res://scenes/util/level_transition.tscn" id="2_c8f7d"]
 [ext_resource type="PackedScene" uid="uid://bkmu8pko6vnxc" path="res://scenes/player_camera.tscn" id="2_rr7qt"]
+[ext_resource type="Resource" uid="uid://cq1olkamholfh" path="res://resources/levels/empty_level.tres" id="3_5j3e5"]
 [ext_resource type="PackedScene" uid="uid://8mieo3lk4xkx" path="res://scenes/characters/mommy_mushroom.tscn" id="3_5m5ap"]
 [ext_resource type="PackedScene" uid="uid://b08x1mfiagp7i" path="res://scenes/baby_mushroom.tscn" id="4_0fwhk"]
 [ext_resource type="PackedScene" uid="uid://uoxb2tl7bwby" path="res://scenes/ice_cream_truck.tscn" id="5_0w5ds"]
-[ext_resource type="Script" path="res://components/level_transition.gd" id="6_6ksb2"]
-[ext_resource type="Resource" uid="uid://3xpgv8s41pt6" path="res://resources/levels/placeholder_level.tres" id="7_lbjmy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm1rx"]
 albedo_color = Color(0.368627, 0.964706, 0.545098, 1)
@@ -62,6 +62,9 @@ size = Vector3(35.194, 36.3301, 26.2854)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7e1f"]
 size = Vector3(150, 20, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vn1ly"]
+size = Vector3(5, 5, 5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xna"]
 sky_top_color = Color(0.345098, 0.627451, 0.941176, 1)
@@ -327,6 +330,22 @@ secondary_offset = Vector3(10, 5, 7)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraZones/CameraZone5"]
 shape = SubResource("BoxShape3D_i7e1f")
 
+[node name="LevelTransitions" type="Node3D" parent="."]
+
+[node name="TransTest" parent="LevelTransitions" instance=ExtResource("2_c8f7d")]
+transform = Transform3D(0.818751, 0, 0.574148, 0, 1, 0, -0.574148, 0, 0.818751, 24.0239, -0.569909, -3.40614)
+level_resource = ExtResource("3_5j3e5")
+
+[node name="CollisionShape3D" parent="LevelTransitions/TransTest" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
+shape = SubResource("BoxShape3D_vn1ly")
+
+[node name="Spawn" parent="LevelTransitions/TransTest" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.59766, 1.69887, 2.0784)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="LevelTransitions/TransTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.8321, 19.188, 54.1228)
 billboard = 1
@@ -357,6 +376,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.145, 4.24048, 0.301399)
 [node name="IceCreamTruck" parent="." instance=ExtResource("5_0w5ds")]
 transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, 12, 4, 57)
 
-[node name="LevelTransition" type="Area3D" parent="."]
-script = ExtResource("6_6ksb2")
-go_to_level = ExtResource("7_lbjmy")
+[editable path="LevelTransitions/TransTest"]

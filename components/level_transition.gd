@@ -1,9 +1,15 @@
 class_name LevelTransition
 extends Area3D
 
-## Level resources contain the packed scene and other metadata.
-@export var go_to_level: LevelResource
+@export var level_resource: LevelResource
 
-## The player will be placed in front of the `area_target` when they are sent to the new scene.
-## The name should be the same as the node in the target scene.
-@export var area_target: String
+## Where the player will spawn when they enter this level.
+@export var spawn_marker: Marker3D
+
+func _ready():
+    body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: Node) -> void:
+    if body is Mommy:
+        if is_instance_valid(level_resource):
+            LevelManager.change_to(level_resource, self.name)

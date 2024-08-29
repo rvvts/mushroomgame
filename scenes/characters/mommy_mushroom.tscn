@@ -65,6 +65,7 @@ radius = 3.0
 radius = 5.0
 
 [node name="MommyMushroom" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 collision_layer = 256
 script = ExtResource("1_q4qni")
 

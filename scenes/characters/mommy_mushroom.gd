@@ -11,6 +11,7 @@
 # collision layer = none
 # collision mask = 32 (camera_zone)
 #===============================================================================
+class_name Mommy
 extends CharacterBody3D
 
 var speed := 10.0
@@ -28,6 +29,7 @@ var is_secondary_angle := false # whether or not to use a camera zone's secondar
 func _ready():
 	add_to_group("parents")
 	EventBus.camera_move.connect(_on_camera_move)
+	EventBus.teleport_player.connect(_on_teleport_player)
 
 func _on_camera_move(offset: Vector3):
 	offset.y = 0
@@ -111,3 +113,9 @@ func _physics_process(delta):
 func _on_child_detector_body_entered(body):
 	if body.is_in_group("children"):
 		body.parent_mushroom = self
+
+func _on_teleport_player(position: Vector3):
+	global_position = position
+	velocity = Vector3.ZERO
+	horizontal_camera_angle = new_horizontal_camera_angle
+	is_secondary_angle = false

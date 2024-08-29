@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=2 format=3 uid="uid://cq1olkamholfh"]
+
+[ext_resource type="Script" path="res://components/level_resource.gd" id="2_x753a"]
+
+[resource]
+script = ExtResource("2_x753a")
+scene_path = "res://scenes/empty_level.tscn"
