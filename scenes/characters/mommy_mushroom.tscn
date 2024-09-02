@@ -1,55 +1,41 @@
-[gd_scene load_steps=14 format=3 uid="uid://8mieo3lk4xkx"]
+[gd_scene load_steps=12 format=3 uid="uid://8mieo3lk4xkx"]
 
 [ext_resource type="Script" path="res://scenes/characters/mommy_mushroom.gd" id="1_q4qni"]
-[ext_resource type="Texture2D" uid="uid://dl2323ec6u7p5" path="res://krita/mommymushroom.png" id="2_f8n8p"]
+[ext_resource type="Texture2D" uid="uid://dfbpy0ixndry3" path="res://libresprite/mommymushroom.png" id="2_282n7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x1npn"]
 radius = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsf2m"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(0, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_10wge"]
+atlas = ExtResource("2_282n7")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idcsj"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(256, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f2ey"]
+atlas = ExtResource("2_282n7")
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrwdu"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(512, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0l22"]
+atlas = ExtResource("2_282n7")
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c6e54"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(0, 256, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pddte"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(256, 256, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2ftn"]
-atlas = ExtResource("2_f8n8p")
-region = Rect2(512, 256, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oswya"]
+atlas = ExtResource("2_282n7")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4vk1n"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qsf2m")
+"texture": SubResource("AtlasTexture_10wge")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idcsj")
+"texture": SubResource("AtlasTexture_8f2ey")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rrwdu")
+"texture": SubResource("AtlasTexture_p0l22")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c6e54")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pddte")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m2ftn")
+"texture": SubResource("AtlasTexture_oswya")
 }],
 "loop": true,
 "name": &"idle",
@@ -72,11 +58,13 @@ script = ExtResource("1_q4qni")
 shape = SubResource("SphereShape3D_x1npn")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.015
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4vk1n")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.8935
 
 [node name="ChildDetector" type="Area3D" parent="."]
 collision_layer = 0
